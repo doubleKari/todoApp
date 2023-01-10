@@ -8,18 +8,10 @@ const Task = ({ task, onDelete, tasks }) => {
 
   function handleCheckClick() {
     setCompleted(!completed);
-
-    tasks.map((item) => {
-      if (item.id === task.id) {
-        return { ...item, completed: !completed };
-      }
-    });
   }
 
-  console.log(tasks);
-
   return (
-    <li className="py-5 pl-14 pr-5 relative flex justify-between text-very-dark-grayish-blue border-b ">
+    <li className="py-5 pl-14 pr-5 relative flex justify-between text-very-dark-grayish-blue border-b hover:cursor-pointer">
       {task.text}
       <span>
         <BsCircle
