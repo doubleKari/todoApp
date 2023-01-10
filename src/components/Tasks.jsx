@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Task from "./Task";
 import { BsCircle } from "react-icons/bs";
@@ -6,6 +6,8 @@ import { MdOutlineAddCircle } from "react-icons/md";
 
 const Tasks = ({ tasks, addNewTask }) => {
   const [addTask, setAddTask] = useState("");
+
+  
 
   function handleOnChange(e) {
     setAddTask(e.target.value);
@@ -22,6 +24,12 @@ const Tasks = ({ tasks, addNewTask }) => {
     }
   }
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handleAdd();
+    }
+  }
+
   return (
     <section className="absolute left-5 top-[110px] w-[90%] flex flex-col gap-6">
       <div className=" flex items-center ">
@@ -31,6 +39,7 @@ const Tasks = ({ tasks, addNewTask }) => {
           className=" h-12 w-[300px] rounded-md pl-14 shadow-md focus:outline-none"
           value={addTask}
           onChange={handleOnChange}
+          onKeyDown={handleKeyDown}
         />
         <i className="absolute top-2 left-5  ">
           <BsCircle className="w-6 h-6 text-very-light-grayish-blue font-bold" />
@@ -53,12 +62,18 @@ const Tasks = ({ tasks, addNewTask }) => {
             />
           );
         })}
-        <li className="flex justify-between px-6 py-5 text-light-grayish-blue">
-          <p>{`${
-            tasks.filter((task) => task.completed === false).length
-          } items left`}</p>
-          <p>Clear completed</p>
-        </li>
+        {tasks.length ? (
+          <li className="flex justify-between px-6 py-5 text-light-grayish-blue">
+            <p>{` ${
+              tasks.filter((task) => task.completed === false).length
+            } items left`}</p>
+            <p>Clear completed</p>
+          </li>
+        ) : (
+          <li className="px-6 py-5 text-light-grayish-blue">
+            No task available
+          </li>
+        )}
       </ul>
       <div className="flex justify-between px-20 py-5 shadow-lg rounded-lg bg-white text-light-grayish-blue font-bold">
         <span className="inline-block">All</span>
