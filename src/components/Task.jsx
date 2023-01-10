@@ -13,28 +13,23 @@ const Task = ({ task, onDelete, tasks }) => {
   return (
     <li className="py-5 pl-14 pr-5 relative flex justify-between text-very-dark-grayish-blue border-b hover:cursor-pointer">
       {task.text}
-      <span>
+      <span className="absolute top-5 left-5">
         <BsCircle
           onClick={handleCheckClick}
-          className={`absolute ${
+          className={` ${
             completed && "bg-gradient-to-r from-gradient-one to-gradient-two"
-          } top-5 left-5 w-6 h-6 text-very-light-grayish-blue  font-bold rounded-full`}
+          }  w-6 h-6 text-very-light-grayish-blue  font-bold rounded-full`}
         />
       </span>
-      <span>
+      <span className="absolute left-7 top-7">
         {completed && (
-          <img
-            src={check}
-            alt="checkmark"
-            onClick={handleCheckClick}
-            className="absolute left-7 top-7"
-          />
+          <img src={check} alt="checkmark" onClick={handleCheckClick} />
         )}
       </span>
       <img
         src={close}
         alt="close"
-        className="self-center w-4 text-dark-grayish-blue"
+        className="self-center w-4 text-dark-grayish-blue inline-block "
         onClick={() => onDelete(task.id)}
       />
     </li>
