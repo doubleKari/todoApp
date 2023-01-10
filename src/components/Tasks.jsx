@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Task from "./Task";
 import { BsCircle } from "react-icons/bs";
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, addNewTask }) => {
+  const [addTask, setAddTask] = useState("");
+
+  function handleDelete(id) {
+    addNewTask(tasks.filter((task) => task.id !== id));
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      addNewTask([...tasks, { id: uuidv4(), text: event.target.value }]);
+    }
+  }
+
   return (
     <section className="absolute left-5 top-[110px] w-[90%] flex flex-col gap-6">
       <div>
@@ -10,6 +23,7 @@ const Tasks = ({ tasks }) => {
           type="text"
           placeholder="Create a new todo.."
           className=" h-12 w-full rounded-md pl-14 shadow-md focus:outline-none"
+          onKeyDown={handleKeyDown}
         />
         <i>
           <BsCircle className="absolute top-3 left-5 w-6 h-6 text-very-light-grayish-blue font-bold" />
@@ -17,10 +31,19 @@ const Tasks = ({ tasks }) => {
       </div>
       <ul className="rounded-md bg-white shadow-lg ">
         {tasks.map((task) => {
-          return <Task key={task.id} task={task} />;
+          return (
+            <Task
+              key={task.id}
+              task={task}
+              tasks={tasks}
+              onDelete={handleDelete}
+            />
+          );
         })}
         <li className="flex justify-between px-6 py-5 text-light-grayish-blue">
-          <p>5 items left</p>
+          <p>{`${
+            tasks.filter((task) => task.completed === false).length
+          } items left`}</p>
           <p>Clear completed</p>
         </li>
       </ul>

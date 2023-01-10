@@ -17,6 +17,8 @@ module.exports = {
         "dark-grayish-blue": "hsl(234, 11%, 52%)",
         "very-dark-grayish-blue": "hsl(233, 14%, 35%)",
         "very-dark-grayish-blue": "hsl(237, 14%, 26%)",
+        "gradient-one": "hsl(192, 100%, 67%)",
+        "gradient-two": "hsl(280, 87%, 65%)",
       },
       fontFamily: {
         josefin: ["Josefin Sans", "sans-serif"],
