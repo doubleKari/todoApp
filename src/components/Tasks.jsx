@@ -32,7 +32,8 @@ const Tasks = ({ tasks, addNewTask }) => {
 
   //fired when clear is clicked
   function handleClear() {
-    
+    const complete = tasks.filter((item) => item.completed === false);
+    addNewTask(complete);
   }
 
   return (
@@ -41,7 +42,7 @@ const Tasks = ({ tasks, addNewTask }) => {
         <input
           type="text"
           placeholder="Create a new todo.."
-          className={` h-12 w-[300px] ${
+          className={` h-12 w-[350px] ${
             darkMode && "bg-very-dark-destaturated-blue text-dark-grayish-blue"
           } rounded-md pl-14 shadow-md focus:outline-none`}
           value={addTask}
@@ -60,7 +61,7 @@ const Tasks = ({ tasks, addNewTask }) => {
         <span className="inline-block mx-1">
           <MdOutlineAddCircle
             onClick={handleAdd}
-            className={`h-12 w-12 ${
+            className={`h-10 w-10 ${
               darkMode ? "text-very-dark-destaturated-blue" : "text-white"
             } `}
           />
@@ -87,7 +88,9 @@ const Tasks = ({ tasks, addNewTask }) => {
             <p>{` ${
               tasks.filter((task) => task.completed === false).length
             } items left`}</p>
-            <p onClick={handleClear}>Clear completed</p>
+            <p onClick={handleClear} className="hover:cursor-pointer">
+              Clear completed
+            </p>
           </li>
         ) : (
           <li
@@ -100,14 +103,14 @@ const Tasks = ({ tasks, addNewTask }) => {
         )}
       </ul>
       <div
-        className={`flex justify-between px-20 py-5 shadow-lg rounded-lg ${
+        className={`flex justify-between px-8 py-5 shadow-lg rounded-lg ${
           darkMode && "bg-very-dark-destaturated-blue"
         } ${darkMode ? "text-dark-grayish-blue" : "text-light-grayish-blue"} 
-          font-bold`}
+          font-bold  ${tasks.length === 0 && "hidden"}`}
       >
-        <span className="inline-block">All</span>
-        <span className="inline-block">Active</span>
-        <span className="inline-block">Completed</span>
+        <span className="inline-block hover:cursor-pointer">All</span>
+        <span className="inline-block hover:cursor-pointer">Active</span>
+        <span className="inline-block hover:cursor-pointer">Completed</span>
       </div>
 
       <p className="text-center mx-auto mt-3 text-light-grayish-blue">

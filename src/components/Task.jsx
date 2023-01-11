@@ -26,7 +26,9 @@ const Task = ({ task, onDelete, tasks, updateTask }) => {
         darkMode ? "text-light-grayish-blue" : "text-very-dark-grayish-blue"
       } border-b ${
         darkMode && "border-b-very-dark-grayish-blue"
-      } hover:cursor-pointer`}
+      } hover:cursor-pointer ${
+        completed && "line-through text-dark-grayish-blue"
+      } ${completed && "text-light-grayish-blue"}`}
     >
       {task.text}
       <span className="absolute top-5 left-5">

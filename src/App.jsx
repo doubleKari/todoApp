@@ -2,20 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import { ThemeContext } from "./Context/ThemeProvider";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
-  const [tasks, setTask] = useState([]);
+  const [tasks, setTask] = useState(() => {
+    return JSON.parse(localStorage.getItem("data")) || [];
+  });
+
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     window.localStorage.setItem("data", JSON.stringify(tasks));
   }, [tasks]);
-
-  // let data = "";
-  // useEffect(() => {
-  //   const dataFromLocalStorage = window.localStorage.getItem("data");
-  //   data = JSON.parse(dataFromLocalStorage);
-  // }, [tasks]);
 
   return (
     <main
@@ -24,7 +22,9 @@ const App = () => {
       } flex flex-col `}
     >
       <Header />
-      <Tasks tasks={tasks} addNewTask={setTask} />
+      <BrowserRouter>
+        <Tasks tasks={tasks} addNewTask={setTask} />
+      </BrowserRouter>
     </main>
   );
 };
