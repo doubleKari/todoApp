@@ -7,6 +7,7 @@ const ThemeProvider = ({ children }) => {
     return JSON.parse(localStorage.getItem("theme")) || false;
   });
 
+  //always set theme to localStorage when value of darkMode changes
   useEffect(() => {
     window.localStorage.setItem("theme", JSON.stringify(darkMode));
   }, [darkMode]);

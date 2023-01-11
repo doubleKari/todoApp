@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Task from "./Task";
 import { BsCircle } from "react-icons/bs";
@@ -36,10 +36,17 @@ const Tasks = ({ tasks, addNewTask }) => {
     addNewTask(complete);
   }
 
+  //focus on input element of page load (useEffect method)
+  // const inputRef = useRef(null);
+  // useEffect(() => {
+  //   inputRef.current.focus();
+  // }, []);
+
   return (
     <section className="absolute left-5 top-[110px] w-[90%]  flex flex-col gap-6 ">
       <div className=" flex items-center ">
         <input
+          autoFocus={true}
           type="text"
           placeholder="Create a new todo.."
           className={` h-12 w-[350px] ${

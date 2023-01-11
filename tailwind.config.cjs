@@ -25,9 +25,8 @@ module.exports = {
       },
       backgroundImage: {
         "mobile-light-header-bg":
-          "url('./src/assets/images/bg-mobile-light.jpg')",
-        "mobile-dark-header-bg":
-          "url('./src/assets/images/bg-mobile-dark.jpg')",
+          "url('src/assets/images/bg-mobile-light.jpg')",
+        "mobile-dark-header-bg": "url('src/assets/images/bg-mobile-dark.jpg')",
       },
     },
   },
