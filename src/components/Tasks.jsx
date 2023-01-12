@@ -27,22 +27,22 @@ const Tasks = ({ tasks, addNewTask }) => {
   }
 
   // fired when "All" is clicked
-  function handleViewAll() {
-    const allTask = tasks.slice();
-    console.log();
-  }
+  // function handleViewAll() {
+  //   const allTask = tasks.slice();
+  //   console.log();
+  // }
 
   //fired when "Active" is clicked
-  function handleViewActive() {
-    addNewTask(tasks.filter((item) => item.completed !== true));
-  }
+  // function handleViewActive() {
+  //   addNewTask(tasks.filter((item) => item.completed !== true));
+  // }
 
   //fired when "Completed is clicked"
-  function handleViewCompleted() {
-    if (tasks.filter((item) => item.completed).length !== 0) {
-      addNewTask(tasks.filter((item) => item.completed));
-    }
-  }
+  // function handleViewCompleted() {
+  //   if (tasks.filter((item) => item.completed).length !== 0) {
+  //     addNewTask(tasks.filter((item) => item.completed));
+  //   }
+  // }
 
   //focus on input element of page load (useEffect method)
   // const inputRef = useRef(null);
@@ -87,7 +87,7 @@ const Tasks = ({ tasks, addNewTask }) => {
       <DisplayTasks tasks={tasks} addNewTask={addNewTask} />
 
       <div
-        className={`flex justify-between px-8 py-5 mx-5 shadow-lg rounded-lg mb-8  ${
+        className={`flex gap-8 justify-center px-8 py-5 mx-5 shadow-lg rounded-lg mb-8  ${
           darkMode && "bg-very-dark-destaturated-blue"
         } ${
           darkMode
@@ -96,23 +96,12 @@ const Tasks = ({ tasks, addNewTask }) => {
         } 
         font-bold z-10  ${tasks.length === 0 && "hidden"}`}
       >
-        <span
-          onClick={handleViewAll}
-          className="hover:text-bright-blue inline-block hover:cursor-pointer"
-        >
-          All
+        <span className="hover:text-bright-blue inline-block hover:cursor-pointer">
+          All ({tasks.length})
         </span>
-        <span
-          onClick={handleViewActive}
-          className="hover:text-bright-blue inline-block hover:cursor-pointer"
-        >
-          Active
-        </span>
-        <span
-          onClick={handleViewCompleted}
-          className="hover:text-bright-blue inline-block hover:cursor-pointer"
-        >
-          Completed
+
+        <span className="hover:text-bright-blue inline-block hover:cursor-pointer">
+          Completed({tasks.filter((item) => item.completed).length})
         </span>
       </div>
       {/* <p
