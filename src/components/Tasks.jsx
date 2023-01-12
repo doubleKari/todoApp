@@ -43,20 +43,20 @@ const Tasks = ({ tasks, addNewTask }) => {
   // }, []);
 
   return (
-    <section className="absolute left-5 top-[110px] w-[90%]  flex flex-col gap-6 ">
-      <div className=" flex items-center ">
+    <>
+      <div className=" flex items-center w-[90%] absolute left-5  top-[110px]">
         <input
           autoFocus={true}
           type="text"
           placeholder="Create a new todo.."
-          className={` h-12 w-[350px] ${
+          className={` h-12 w-[350px] block relative  ${
             darkMode && "bg-very-dark-destaturated-blue text-dark-grayish-blue"
           } rounded-md pl-14 shadow-md focus:outline-none`}
           value={addTask}
           onChange={handleOnChange}
           onKeyDown={handleKeyDown}
         />
-        <i className="absolute top-2 left-5  ">
+        <i className="absolute left-5  ">
           <BsCircle
             className={`w-6 h-6 ${
               darkMode
@@ -77,7 +77,7 @@ const Tasks = ({ tasks, addNewTask }) => {
       <ul
         className={`rounded-md ${
           darkMode ? "bg-very-dark-destaturated-blue" : "bg-white "
-        } shadow-lg `}
+        } shadow-lg  mx-5 -mt-12`}
       >
         {tasks.map((task) => {
           return (
@@ -110,20 +110,20 @@ const Tasks = ({ tasks, addNewTask }) => {
         )}
       </ul>
       <div
-        className={`flex justify-between px-8 py-5 shadow-lg rounded-lg ${
+        className={`flex justify-between px-8 py-5 mx-5 shadow-lg rounded-lg mb-8  ${
           darkMode && "bg-very-dark-destaturated-blue"
         } ${darkMode ? "text-dark-grayish-blue" : "text-light-grayish-blue"} 
-          font-bold  ${tasks.length === 0 && "hidden"}`}
+        font-bold  ${tasks.length === 0 && "hidden"}`}
       >
         <span className="inline-block hover:cursor-pointer">All</span>
         <span className="inline-block hover:cursor-pointer">Active</span>
         <span className="inline-block hover:cursor-pointer">Completed</span>
       </div>
 
-      <p className="text-center mx-auto mt-3 text-light-grayish-blue">
+      {/* <p className="text-center mx-auto mt-3 text-light-grayish-blue">
         {tasks.length > 0 && "Drag and drop to reorder list"}
-      </p>
-    </section>
+      </p> */}
+    </>
   );
 };
 

@@ -17,9 +17,9 @@ const App = () => {
 
   return (
     <main
-      className={`w-full h-full relative  font-josefin ${
+      className={`w-full min-h-screen relative  font-josefin ${
         darkMode ? "bg-very-dark-blue" : "bg-very-light-gray"
-      } flex flex-col `}
+      } flex flex-col gap-6`}
     >
       <Header />
       <BrowserRouter>
