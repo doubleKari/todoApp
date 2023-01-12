@@ -24,9 +24,8 @@ module.exports = {
         josefin: ["Josefin Sans", "sans-serif"],
       },
       backgroundImage: {
-        "mobile-light-header-bg":
-          "url('src/assets/images/bg-mobile-light.jpg')",
-        "mobile-dark-header-bg": "url('src/assets/images/bg-mobile-dark.jpg')",
+        "mobile-light-header-bg": "url('./public/bg-mobile-light.jpg')",
+        "mobile-dark-header-bg": "url('./public/bg-mobile-dark.jpg')",
       },
     },
   },
