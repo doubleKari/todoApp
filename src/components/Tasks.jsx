@@ -29,7 +29,7 @@ const Tasks = ({ tasks, addNewTask }) => {
   // fired when "All" is clicked
   function handleViewAll() {
     const allTask = tasks.slice();
-    console.log(tasks);
+    console.log();
   }
 
   //fired when "Active" is clicked
