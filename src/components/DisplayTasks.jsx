@@ -20,7 +20,7 @@ const DisplayTasks = ({ tasks, addNewTask }) => {
     <ul
       className={`rounded-md ${
         darkMode ? "bg-very-dark-destaturated-blue" : "bg-white "
-      } shadow-lg  mx-5 -mt-12`}
+      } shadow-lg  mx-5 -mt-12 sm:mx-24`}
     >
       {tasks.map((task) => {
         return (

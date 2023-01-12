@@ -52,7 +52,7 @@ const Tasks = ({ tasks, addNewTask }) => {
 
   return (
     <>
-      <div className=" flex items-center w-[90%] absolute left-5  top-[110px]">
+      <div className=" flex items-center w-[90%]  absolute left-5  top-[110px]">
         <input
           autoFocus={true}
           type="text"
@@ -115,13 +115,13 @@ const Tasks = ({ tasks, addNewTask }) => {
           Completed
         </span>
       </div>
-      <p
+      {/* <p
         className={`text-center mx-auto w-full ${
           darkMode ? "text-light-grayish-blue" : "text-dark-grayish-blue"
         }  absolute bottom-4`}
       >
         &copy;Copyright 2023 &bull; Code by doubleKari
-      </p>
+      </p> */}
 
       {/* <p className="text-center mx-auto mt-3 text-light-grayish-blue">
         {tasks.length > 0 && "Drag and drop to reorder list"}
