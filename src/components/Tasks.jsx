@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Task from "./Task";
 import { BsCircle } from "react-icons/bs";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { ThemeContext } from "../Context/ThemeProvider";
+import DisplayTasks from "./DisplayTasks";
 
 const Tasks = ({ tasks, addNewTask }) => {
   const [addTask, setAddTask] = useState("");
@@ -11,10 +11,6 @@ const Tasks = ({ tasks, addNewTask }) => {
 
   function handleOnChange(e) {
     setAddTask(e.target.value);
-  }
-
-  function handleDelete(id) {
-    addNewTask(tasks.filter((task) => task.id !== id));
   }
 
   function handleAdd() {
@@ -30,10 +26,22 @@ const Tasks = ({ tasks, addNewTask }) => {
     }
   }
 
-  //fired when clear is clicked
-  function handleClear() {
-    const complete = tasks.filter((item) => item.completed === false);
-    addNewTask(complete);
+  // fired when "All" is clicked
+  function handleViewAll() {
+    const allTask = tasks.slice();
+    console.log(tasks);
+  }
+
+  //fired when "Active" is clicked
+  function handleViewActive() {
+    addNewTask(tasks.filter((item) => item.completed !== true));
+  }
+
+  //fired when "Completed is clicked"
+  function handleViewCompleted() {
+    if (tasks.filter((item) => item.completed).length !== 0) {
+      addNewTask(tasks.filter((item) => item.completed));
+    }
   }
 
   //focus on input element of page load (useEffect method)
@@ -74,51 +82,46 @@ const Tasks = ({ tasks, addNewTask }) => {
           />
         </span>
       </div>
-      <ul
-        className={`rounded-md ${
-          darkMode ? "bg-very-dark-destaturated-blue" : "bg-white "
-        } shadow-lg  mx-5 -mt-12`}
-      >
-        {tasks.map((task) => {
-          return (
-            <Task
-              key={task.id}
-              task={task}
-              tasks={tasks}
-              onDelete={handleDelete}
-              updateTask={addNewTask}
-            />
-          );
-        })}
-        {tasks.length ? (
-          <li className="flex justify-between px-6 py-5 text-light-grayish-blue">
-            <p>{` ${
-              tasks.filter((task) => task.completed === false).length
-            } items left`}</p>
-            <p onClick={handleClear} className="hover:cursor-pointer">
-              Clear completed
-            </p>
-          </li>
-        ) : (
-          <li
-            className={`px-6 py-5 ${
-              darkMode ? "text-dark-grayish-blue" : "text-light-grayish-blue"
-            }`}
-          >
-            No task available
-          </li>
-        )}
-      </ul>
+
+      {/* display task component */}
+      <DisplayTasks tasks={tasks} addNewTask={addNewTask} />
+
       <div
         className={`flex justify-between px-8 py-5 mx-5 shadow-lg rounded-lg mb-8  ${
           darkMode && "bg-very-dark-destaturated-blue"
-        } ${darkMode ? "text-dark-grayish-blue" : "text-light-grayish-blue"} 
-        font-bold  ${tasks.length === 0 && "hidden"}`}
+        } ${
+          darkMode
+            ? "text-dark-grayish-blue"
+            : "text-light-grayish-blue-light-theme"
+        } 
+        font-bold z-10  ${tasks.length === 0 && "hidden"}`}
       >
-        <span className="inline-block hover:cursor-pointer">All</span>
-        <span className="inline-block hover:cursor-pointer">Active</span>
-        <span className="inline-block hover:cursor-pointer">Completed</span>
+        <span
+          onClick={handleViewAll}
+          className="hover:text-bright-blue inline-block hover:cursor-pointer"
+        >
+          All
+        </span>
+        <span
+          onClick={handleViewActive}
+          className="hover:text-bright-blue inline-block hover:cursor-pointer"
+        >
+          Active
+        </span>
+        <span
+          onClick={handleViewCompleted}
+          className="hover:text-bright-blue inline-block hover:cursor-pointer"
+        >
+          Completed
+        </span>
       </div>
+      <p
+        className={`text-center mx-auto w-full ${
+          darkMode ? "text-light-grayish-blue" : "text-dark-grayish-blue"
+        }  absolute bottom-4`}
+      >
+        &copy;Copyright 2023 &bull; Code by doubleKari
+      </p>
 
       {/* <p className="text-center mx-auto mt-3 text-light-grayish-blue">
         {tasks.length > 0 && "Drag and drop to reorder list"}
